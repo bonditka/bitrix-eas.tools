@@ -1,0 +1,21 @@
+{
+    "name": "bonditka/bitrix-eas.tools",
+    "description": "Services tools for Bitrix",
+    "keywords": ["tools", "bitrix"],
+    "type": "bitrix-d7-module",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/bonditka/bitrix-eas.tools/issues",
+        "source": "https://github.com/bonditka/bitrix-eas.tools"
+    },
+    "authors": [
+        {
+            "name": "Ekaterina Sergeeva",
+            "homepage": "http://es-website.ru/"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "composer/installers": "~1.0"
+    }
+}
