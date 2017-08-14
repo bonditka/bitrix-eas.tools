@@ -6,7 +6,7 @@
  */
 namespace Eas\Tools;
 
-use Bitrix\Highloadblock as HL;
+use Bitrix\Highloadblock as bhl;
 use Bitrix\Main\Entity;
 use Bitrix\Main\Loader as Loader;
 
@@ -40,7 +40,7 @@ class hl {
                 return;
             }
 
-            $rsData = HL\HighloadBlockTable::getList(array('filter'=>array('NAME'=>$blockCode)));
+            $rsData = bhl\HighloadBlockTable::getList(array('filter'=>array('NAME'=>$blockCode)));
             $arData = $rsData->fetch();
             $this->iblockId[$blockCode] = $arData['ID'];
         }
@@ -66,9 +66,9 @@ class hl {
             $hlblock_id = hl::get()->getBlockIdByCode($hlblock_);
         }
 
-        $hlblock = HL\HighloadBlockTable::getById($hlblock_id)->fetch();
+        $hlblock = bhl\HighloadBlockTable::getById($hlblock_id)->fetch();
 
-        $entity = HL\HighloadBlockTable::compileEntity($hlblock);
+        $entity = bhl\HighloadBlockTable::compileEntity($hlblock);
         $main_query = new Entity\Query($entity);
         $main_query->setSelect($params['select']?$params['select']:array('*'));
 
@@ -134,15 +134,15 @@ class hl {
 
         foreach ($requiredModules as $requiredModule)
         {
-                if (!CModule::IncludeModule($requiredModule))
+                if (!Loader::includeModule($requiredModule))
                 {
                         ShowError(GetMessage("F_NO_MODULE"));
                         return 0;
                 }
         }
 
-        $hlblock = HL\HighloadBlockTable::getById($hlblock_id)->fetch();
-        $entity = HL\HighloadBlockTable::compileEntity($hlblock);
+        $hlblock = bhl\HighloadBlockTable::getById($hlblock_id)->fetch();
+        $entity = bhl\HighloadBlockTable::compileEntity($hlblock);
         $entity_data_class = $entity->getDataClass();
 
         $result = $entity_data_class::add($arAdd);
@@ -169,15 +169,15 @@ class hl {
 
         foreach ($requiredModules as $requiredModule)
         {
-                if (!CModule::IncludeModule($requiredModule))
+                if (!Loader::includeModule($requiredModule))
                 {
                         ShowError(GetMessage("F_NO_MODULE"));
                         return 0;
                 }
         }
 
-        $hlblock = HL\HighloadBlockTable::getById($hlblock_id)->fetch();
-        $entity = HL\HighloadBlockTable::compileEntity($hlblock);
+        $hlblock = bhl\HighloadBlockTable::getById($hlblock_id)->fetch();
+        $entity = bhl\HighloadBlockTable::compileEntity($hlblock);
         $entity_data_class = $entity->getDataClass();
 
         $result = $entity_data_class::update($id, $arUpdate);
